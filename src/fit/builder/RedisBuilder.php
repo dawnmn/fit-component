@@ -5,7 +5,7 @@
  * @since       2017/10/30 17:38
  */
 
-namespace builder;
+namespace fit\builder;
 
 /**
  * 用单例的方式实例化Redis，获取实例时进行断线重连
