@@ -15,5 +15,6 @@
             "fit\\builder\\": "src/builder"
         }
     },
+    "license": "MIT",
     "require": {}
 }
