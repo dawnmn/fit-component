@@ -9,12 +9,17 @@
         }
     ],
     "homepage": "https://github.com/dawnmn/fit-component",
-    "minimum-stability": "stable",
+    "minimum-stability": "dev",
+    "require": {
+        "php": ">=7.0"
+    },
+    "require-dev": {
+        "php": ">=7.0"
+    },
+    "license": "MIT",
     "autoload": {
         "psr-4": {
             "fit\\builder\\": "src/fit/builder/"
         }
-    },
-    "license": "MIT",
-    "require": {}
+    }
 }
