@@ -1,0 +1,19 @@
+{
+    "name": "dawnmn/fit-component",
+    "description": "fitness php component",
+    "type": "library",
+    "authors": [
+        {
+            "name": "dawnmn",
+            "email": "dawnmn@126.com"
+        }
+    ],
+    "homepage": "https://github.com/dawnmn/fit-component",
+    "minimum-stability": "stable",
+    "autoload": {
+        "psr-4": {
+            "fit\\builder\\": "src/builder"
+        }
+    },
+    "require": {}
+}
