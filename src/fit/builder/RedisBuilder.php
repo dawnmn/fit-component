@@ -12,8 +12,8 @@ namespace fit\builder;
  */
 class RedisBuilder
 {
-    const HOST = '127.0.0.1';
-    const PORT = 6379;
+    private static $host;
+    private static $port;
 
     private static $instance = null;
 
@@ -21,7 +21,7 @@ class RedisBuilder
     {
         ini_set('default_socket_timeout', -1);
         self::$instance = new \Redis();
-        self::$instance->connect(self::HOST, self::PORT);
+        self::$instance->connect(self::$host, self::$port);
     }
 
     private function __wakeup()
@@ -46,14 +46,19 @@ class RedisBuilder
 
     /**
      * 外部获取redis的方法
+     * @param string $host redis服务器IP
+     * @param int $port redis服务器端口
+     * @return null|\Redis
      */
-    public static function getInstance(){
+    public static function getInstance(string $host='127.0.0.1', int $port=6379){
         if(!self::$instance){
+            self::$host = $host;
+            self::$port = $port;
             new RedisBuilder();
         }else{
             // 断线重连
             if(!self::ping()){
-                self::$instance->connect(self::HOST, self::PORT);
+                self::$instance->connect(self::$host, self::$port);
             }
         }
         return self::$instance;
