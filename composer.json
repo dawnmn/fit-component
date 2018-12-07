@@ -20,7 +20,7 @@
     "license": "MIT",
     "autoload": {
         "psr-4": {
-            "fit\\builder\\": "src/fit/builder/"
+            "fit\\": "src/fit/"
         }
     }
 }
