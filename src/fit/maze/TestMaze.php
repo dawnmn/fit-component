@@ -9,7 +9,11 @@
 namespace fit\maze;
 
 
-class EnterGym extends Maze
+/**
+ * Class TestMaze
+ * @package fit\maze
+ */
+class TestMaze extends Maze
 {
     public function setRule()
     {
@@ -30,35 +34,35 @@ class EnterGym extends Maze
     }
 
     public function a(){
-        $this->wrong[] = 'a';
-        return false;
+        $this->step[] = 'a';
+        return true;
     }
     public function b(){
-        $this->wrong[] = 'b';
+        $this->step[] = 'b';
         return false;
     }
     public function c(){
-        $this->wrong[] = 'c';
-        return false;
+        $this->step[] = 'c';
+        return true;
     }
     public function d(){
-        $this->wrong[] = 'd';
-        return false;
+        $this->step[] = 'd';
+        return true;
     }
     public function e(){
-        $this->wrong[] = 'e';
+        $this->step[] = 'e';
         return false;
     }
     public function f(){
-        $this->wrong[] = 'f';
+        $this->step[] = 'f';
         return false;
     }
     public function g(){
-        $this->wrong[] = 'g';
+        $this->step[] = 'g';
         return false;
     }
     public function h(){
-        $this->wrong[] = 'h';
+        $this->step[] = 'h';
         return false;
     }
 }

@@ -1,0 +1,1 @@
+使用方式参见TestMaze.php（创建迷宫规则）与test.php（使用迷宫）

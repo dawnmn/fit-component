@@ -4,5 +4,13 @@
  * @author      dawn
  * @since       2018/12/10 17:14
  */
-$enterGym = new \fit\maze\EnterGym();
-var_dump($enterGym->wrong);
+
+require 'Node.php';
+require 'NodeBuilder.php';
+require 'Visitor.php';
+require 'Maze.php';
+require 'TestMaze.php';
+
+$testMaze = new \fit\maze\TestMaze();
+echo $testMaze->run();
+var_dump($testMaze->step);
