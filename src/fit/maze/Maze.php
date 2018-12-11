@@ -12,7 +12,7 @@ namespace fit\maze;
 abstract class Maze
 {
     // 错误路径收集器
-    public $wrong = [];
+    public $step = [];
 
     protected $builder;
 
@@ -20,8 +20,6 @@ abstract class Maze
     {
         $this->builder = new NodeBuilder();
     }
-
-    public abstract function setRule();
 
     public function run(){
         $this->setRule();
@@ -33,4 +31,5 @@ abstract class Maze
     }
 
     // 制定你的迷宫单元 ...
+    public abstract function setRule();
 }
