@@ -10,7 +10,6 @@ namespace fit\monitor;
 
 /**
  * 系统监控器
- * 推荐实现：PhpException Slow ResponseDataException
  * Interface Monitor
  * @package fit\monitor
  */
@@ -20,11 +19,11 @@ interface Monitor
      * 过滤器
      * @return mixed
      */
-    function filter();
+    function mFilter();
 
     /**
      * 存储
      * @return mixed
      */
-    function save();
+    function mSave();
 }
