@@ -223,6 +223,7 @@ class Node
     public function accept(Visitor $visitor)
     {
         $result = call_user_func([$visitor->maze, $this->value]);
+        $visitor->maze->step[] = $this->value;
         if($result == false){
             return;
         }else if($this->isLeaf()){

@@ -11,5 +11,5 @@ namespace fit\queue;
 
 interface Executor
 {
-    public function run($task);
+    function run($task);
 }

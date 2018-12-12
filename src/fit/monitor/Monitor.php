@@ -20,11 +20,11 @@ interface Monitor
      * 过滤器
      * @return mixed
      */
-    public function filter();
+    function filter();
 
     /**
      * 存储
      * @return mixed
      */
-    public function save();
+    function save();
 }

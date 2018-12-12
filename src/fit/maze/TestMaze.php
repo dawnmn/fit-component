@@ -15,7 +15,7 @@ namespace fit\maze;
  */
 class TestMaze extends Maze
 {
-    public function setRule()
+    protected function setRule()
     {
         $this->builder->value('a')
             ->leaf('b')
@@ -34,35 +34,27 @@ class TestMaze extends Maze
     }
 
     public function a(){
-        $this->step[] = 'a';
         return true;
     }
     public function b(){
-        $this->step[] = 'b';
         return false;
     }
     public function c(){
-        $this->step[] = 'c';
         return true;
     }
     public function d(){
-        $this->step[] = 'd';
         return true;
     }
     public function e(){
-        $this->step[] = 'e';
         return false;
     }
     public function f(){
-        $this->step[] = 'f';
         return false;
     }
     public function g(){
-        $this->step[] = 'g';
         return false;
     }
     public function h(){
-        $this->step[] = 'h';
         return false;
     }
 }

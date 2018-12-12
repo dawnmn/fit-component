@@ -30,8 +30,53 @@ class Functions
 
     /**
      * 根据 ramsey/uuid 生成uuid
+     * @param string|null 盐值
+     * @return string
+     * @throws \Exception
      */
-    public static function uuid($salt=null){
-        return $salt ? \Ramsey\Uuid\Uuid::uuid1($salt)->toString() : \Ramsey\Uuid\Uuid::uuid1()->toString();
+    public static function uuid(){
+        $macAddress = self::getMacAddress();
+        $macAddress = str_replace(':', '', $macAddress);
+        return \Ramsey\Uuid\Uuid::uuid1($macAddress)->toString();
+    }
+
+    /**
+     *  随机字符串生成器
+     * @param int $type
+     * @param int $length
+     * @return string
+     */
+    public static function randStr($type = 1, $length = 8){
+        switch ($type) {
+            case 0:
+                $chars = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789+_-=?*^%$#@!';
+                break;
+            case 1:
+                $chars = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
+                break;
+            case 2:
+                $chars = '0123456789';
+                break;
+            case 3:
+                $chars = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+                break;
+        }
+        $code = '';
+        for ($i = 0; $i < $length; $i++) {
+            $code .= $chars[mt_rand(0, strlen($chars) - 1)];
+        }
+        return $code;
+    }
+
+    public static function getMacAddress(){
+        @exec("ifconfig -a", $result);
+        $tempArray = array();
+        foreach ( $result as $value ){
+            if (
+                preg_match("/[0-9a-f][0-9a-f][:-]"."[0-9a-f][0-9a-f][:-]"."[0-9a-f][0-9a-f][:-]"."[0-9a-f][0-9a-f][:-]"."[0-9a-f][0-9a-f][:-]"."[0-9a-f][0-9a-f]/i",$value,
+                    $tempArray ) ){
+                return $tempArray[0];
+            }
+        }
     }
 }

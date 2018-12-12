@@ -11,7 +11,7 @@ namespace fit\maze;
 
 abstract class Maze
 {
-    // 错误路径收集器
+    // 存储轨迹
     public $step = [];
 
     protected $builder;
@@ -31,5 +31,5 @@ abstract class Maze
     }
 
     // 制定你的迷宫单元 ...
-    public abstract function setRule();
+    protected abstract function setRule();
 }

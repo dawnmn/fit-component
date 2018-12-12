@@ -24,6 +24,8 @@ class DelayQueue
      * @param array $task 任务
      * @param string $keyAlias 自定义唯一键别名，能够找回，用于查询队列任务
      * @return string 键名
+     * @throws \Exception
+     * @throws \Throwable
      */
     public function postTask(int $timestamp,int $executorId,array $task,string $keyAlias=''){
         $task['__index'] = 0; // 任务执行次数计数器
