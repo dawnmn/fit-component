@@ -69,7 +69,7 @@ class Functions
     }
 
     public static function getMacAddress(){
-        @exec("ifconfig -a", $result);
+        @exec("sudo ifconfig -a", $result);
         $tempArray = array();
         foreach ( $result as $value ){
             if (
