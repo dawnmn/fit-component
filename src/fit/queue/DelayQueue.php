@@ -98,7 +98,7 @@ class DelayQueue
                 }
                 $executorClass = $executors[$task['__executorId']];
                 // 执行成功 或者 执行三次 后删除
-                if($executorClass::run($task) === true || (++$task['__index'] ==3)){
+                if((new $executorClass())->run($task) === true || (++$task['__index'] ==3)){
                     if($task['__index'] ==3){
                         $failTasks[] = $task;
                     }
