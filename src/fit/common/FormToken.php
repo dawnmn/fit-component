@@ -1,13 +1,10 @@
 <?php
 /**
- * @copyright   时刻共享
  * @author      dawn
  * @since       2018/12/11 16:53
  */
 
-
 namespace fit\common;
-
 
 use fit\builder\RedisBuilder;
 

@@ -2,7 +2,6 @@
 
 namespace fit\maze;
 
-
 class Visitor
 {
     public $maze;

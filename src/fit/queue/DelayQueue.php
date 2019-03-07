@@ -1,13 +1,10 @@
 <?php
 /**
- * @copyright   时刻共享
  * @author      dawn
  * @since       2018/12/5 17:21
  */
 
-
 namespace fit\queue;
-
 
 use fit\builder\RedisBuilder;
 use fit\common\Functions;
@@ -25,7 +22,6 @@ class DelayQueue
      * @param string $keyAlias 自定义唯一键别名，能够找回，用于查询队列任务
      * @return string 键名
      * @throws \Exception
-     * @throws \Throwable
      */
     public function postTask(int $timestamp,int $executorId,array $task,string $keyAlias=''){
         $task['__index'] = 0; // 任务执行次数计数器
@@ -78,9 +74,7 @@ class DelayQueue
 
     /**
      * 执行任务
-     * 队列服务器需要配合Monitor处理异常、错误、失败的任务
      * @return array 失败的任务数组
-     * @throws \Exception
      * @throws \Throwable
      */
     public function run(){
@@ -110,8 +104,6 @@ class DelayQueue
                 }
             }
             return $failTasks;
-        }catch (\Exception $e){
-            throw $e;
         }catch (\Throwable $e){
             throw $e;
         }

@@ -1,10 +1,8 @@
 <?php
 /**
- * @copyright   时刻共享
  * @author      dawn
  * @since       2018/12/11 17:13
  */
-
 
 namespace fit\common;
 

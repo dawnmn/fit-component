@@ -1,13 +1,10 @@
 <?php
 /**
- * @copyright   时刻共享
  * @author      dawn
  * @since       2018/12/10 17:07
  */
 
-
 namespace fit\maze;
-
 
 /**
  * Class TestMaze

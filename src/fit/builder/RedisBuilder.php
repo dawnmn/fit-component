@@ -1,6 +1,5 @@
 <?php
 /**
- * @copyright   时刻共享
  * @author      dawn
  * @since       2017/10/30 17:38
  */

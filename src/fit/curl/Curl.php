@@ -1,10 +1,8 @@
 <?php
 /**
- * @copyright   时刻共享
  * @author      dawn
  * @since       2018/12/5 16:10
  */
-
 
 namespace fit\curl;
 

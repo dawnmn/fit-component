@@ -1,13 +1,10 @@
 <?php
 /**
- * @copyright   时刻共享
  * @author      dawn
  * @since       2018/12/12 10:44
  */
 
-
 namespace fit\queue;
-
 
 class TestExecutor implements Executor
 {

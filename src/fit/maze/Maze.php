@@ -1,13 +1,10 @@
 <?php
 /**
- * @copyright   时刻共享
  * @author      dawn
  * @since       2018/12/10 16:54
  */
 
-
 namespace fit\maze;
-
 
 abstract class Maze
 {
