@@ -6,6 +6,8 @@
 
 namespace fit\common;
 
+use Hashids\Hashids;
+
 class Functions
 {
     /**
@@ -65,6 +67,10 @@ class Functions
         return $code;
     }
 
+    /**
+     * 获取物理地址
+     * @return mixed
+     */
     public static function getMacAddress(){
         @exec("sudo ifconfig -a", $result);
         $tempArray = array();
@@ -74,6 +80,33 @@ class Functions
                     $tempArray ) ){
                 return $tempArray[0];
             }
+        }
+    }
+
+    /**
+     * 编码ID
+     * @param int $id
+     * @return string
+     */
+    public static function encodeId(int $id){
+        $hashids = new Hashids(Config::PROJECT_NAME);
+        // 确保uuid字符长度大于等于6
+        $uuid = $hashids->encode(Config::CUSTOMER_ID_BASE_NUMBER + $id);
+        return $uuid;
+    }
+
+    /**
+     * 解码ID
+     * @param string $uuid
+     * @return bool|int
+     */
+    public static function decodeId(string $uuid){
+        $hashids = new Hashids(Config::PROJECT_NAME);
+
+        if($result = $hashids->decode($uuid)){
+            return $result[0] - Config::CUSTOMER_ID_BASE_NUMBER;
+        }else{
+            return false;
         }
     }
 }
