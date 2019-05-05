@@ -6,10 +6,13 @@
  */
 
 
-namespace fit\logic\ec;
+namespace fit\ruler\id;
 
 
-class RulerEC extends ExpressionCalculate
+use fit\logic\ec\ExpressionCalculate;
+use fit\ruler\Compiler;
+
+class IdCompiler extends ExpressionCalculate implements Compiler
 {
     const PATTERN = '/((?:[\w,]+)|(?:[\(\)\&\|])){1}/';
     const OP_PRIORITY = [
@@ -19,7 +22,7 @@ class RulerEC extends ExpressionCalculate
         '|'=>1
     ];
 
-    public $specificationClassPath = '';
+    public $numClassPath = '';
     public $queryBuilder = null;
 
     protected function operator($numLeft, $numRight, string $op){
@@ -48,13 +51,9 @@ class RulerEC extends ExpressionCalculate
 
     protected function parseNum($num){
         $param = $this->getParam($num);
-        $className = $this->specificationClassPath.$param[0];
+        $className = $this->numClassPath.$param[0];
         array_shift($param);
         return (new $className($param))->getNum();
-    }
-
-    public function init(string $specificationClassPath){
-        $this->specificationClassPath = $specificationClassPath;
     }
 
     protected function validate($input){
@@ -63,5 +62,11 @@ class RulerEC extends ExpressionCalculate
         }else{
             return true;
         }
+    }
+
+    function compile($target, ...$args)
+    {
+        $this->numClassPath = $args[0];
+        return $this->calculate($target);
     }
 }
