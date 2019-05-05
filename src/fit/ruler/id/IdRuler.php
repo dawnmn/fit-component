@@ -19,11 +19,11 @@ class IdRuler extends Ruler
      */
     public function apply($target, ...$args): bool {
         if($target = $this->compile($target, $args[0])){
-            return $this->execute($target);
+            unset($args[0]);
+            return $this->execute($target, ...$args);
         }else{
             return false;
         }
-
     }
 
     function compile($target, ...$args)
@@ -33,6 +33,6 @@ class IdRuler extends Ruler
 
     function execute($target, ...$args): bool
     {
-        return $this->executor->run($target);
+        return $this->executor->run($target, ...$args);
     }
 }
