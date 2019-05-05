@@ -9,7 +9,13 @@
 namespace fit\ruler\id;
 
 
-interface IdRulerNum
+abstract class IdRulerNum
 {
-    function getNum();
+    protected $param;
+    public function __construct($param)
+    {
+        $this->param = $param;
+    }
+
+    abstract function getNum();
 }
