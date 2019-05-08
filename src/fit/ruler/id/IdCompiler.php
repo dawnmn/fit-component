@@ -37,7 +37,7 @@ class IdCompiler extends ExpressionCalculate implements Compiler
             case '&':
                 return array_intersect($numLeft, $numRight);
             case '|':
-                return array_merge($numLeft, $numRight);
+                return array_unique(array_merge($numLeft, $numRight));
         }
     }
 
