@@ -78,20 +78,20 @@ class DelayQueue
      * @throws \Throwable
      */
     public function run(){
-        try{
-            $redis = RedisBuilder::getInstance();
-            // 一轮取100条
-            $keys = $redis->zRange(self::REDIS_KEY_TASK, 0, 99);
-            $executors = $this->getExecutors();
-            $time = time();
-            $failTasks = []; // 回收失败的任务
-            foreach ($keys as $key){
-                $task = json_decode($redis->get($key), true);
-                if($task['__timestamp'] > $time){
-                    break;
-                }
-                $executorClass = $executors[$task['__executorId']];
-                // 执行成功 或者 执行三次 后删除
+        $redis = RedisBuilder::getInstance();
+        // 一轮取100条
+        $keys = $redis->zRange(self::REDIS_KEY_TASK, 0, 99);
+        $executors = $this->getExecutors();
+        $time = time();
+        $failTasks = []; // 回收失败的任务
+        foreach ($keys as $key){
+            $task = json_decode($redis->get($key), true);
+            if($task['__timestamp'] > $time){
+                break;
+            }
+            $executorClass = $executors[$task['__executorId']];
+            // 执行成功 或者 执行三次 后删除
+            try{
                 if((new $executorClass())->run($task) === true || (++$task['__index'] ==3)){
                     if($task['__index'] ==3){
                         $failTasks[] = $task;
@@ -102,10 +102,13 @@ class DelayQueue
                 }else{
                     $redis->set($key, json_encode($task));
                 }
+            }catch (\Throwable $e){
+                $redis->zRem(self::REDIS_KEY_TASK, $key);
+                $redis->delete($key);
+                $task['__keyAlias'] && $redis->delete($task['__keyAlias']);
+                throw $e;
             }
-            return $failTasks;
-        }catch (\Throwable $e){
-            throw $e;
         }
+        return $failTasks;
     }
 }
